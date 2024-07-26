@@ -48,15 +48,14 @@ jobs:
 
     - name: Load environment variables
       run: |
-        cp .env app/.env
-        cp .flaskenv app/.flaskenv
-        export $(cat app/.env | xargs)
-        export $(cat app/.flaskenv | xargs)
+        cp app/.env .env
+        cp app/.flaskenv .flaskenv
+        export $(cat .env | xargs)
+        export $(cat .flaskenv | xargs)
 
     - name: Run tests
       run: |
-        cd app
-        export FLASK_APP=main.py
+        export FLASK_APP=app/main.py
         flask db upgrade
         pytest
 
