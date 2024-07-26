@@ -34,7 +34,7 @@ The Student Success Dashboard is a web application designed to help manage stude
     ```env
     DB_NAME=ssdDatabase
     DB_USER=postgres
-    DB_PASSWORD=sql123
+    DB_PASSWORD=your_pass_key
     SECRET_KEY=your_secret_key
     FLASK_ENV=development
     ```
