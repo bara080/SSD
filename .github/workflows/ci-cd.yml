@@ -48,10 +48,10 @@ jobs:
 
     - name: Load environment variables
       run: |
-        cp app/.env .env
-        cp app/.flaskenv .flaskenv
-        export $(cat .env | xargs)
-        export $(cat .flaskenv | xargs)
+        cp .env app/.env
+        cp .flaskenv app/.flaskenv
+        export $(cat app/.env | xargs)
+        export $(cat app/.flaskenv | xargs)
 
     - name: Run tests
       run: |
