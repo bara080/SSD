@@ -55,7 +55,7 @@ jobs:
 
     - name: Run tests
       run: |
-        export FLASK_APP=app/main.py
+        export FLASK_APP=main.py
         flask db upgrade
         pytest
 
