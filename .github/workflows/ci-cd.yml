@@ -56,7 +56,7 @@ jobs:
 
     - name: Load environment variables
       run: |
-        cp .env app/.env  
+        cp .env app/.env
         cp .flaskenv app/.flaskenv
         export $(cat app/.env | xargs)
         export $(cat app/.flaskenv | xargs)
