@@ -14,11 +14,12 @@ RUN pip install -r requirements.txt
 # Copy the current directory contents into the container at /world
 COPY . /world
 
-# Make port 80 available to the world outside this container
+# Define environment variables
+ENV FLASK_APP=app/main.py
+ENV FLASK_ENV=production
+
+# Expose the port Flask runs on
 EXPOSE 80
 
-# Define environment variable
-ENV NAME World
-
 # Run the application when the container launches
-CMD ["python", "app/main.py"]
+CMD ["flask", "run", "--host=0.0.0.0", "--port=80"]

@@ -1,2 +1,6 @@
 .env
 __pychace
+.env
+.env.docker
+.env.local
+__pychace__

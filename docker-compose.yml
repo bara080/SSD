@@ -21,13 +21,13 @@ services:
     command: flask run --host=0.0.0.0 --port=80
     environment:
       FLASK_APP: app/main.py
-      FLASK_ENV: development
+      FLASK_ENV: production  
       SECRET_KEY: ${SECRET_KEY}
       DB_NAME: ${DB_NAME}
       DB_USER: ${DB_USER}
       DB_PASSWORD: ${DB_PASSWORD}
-      DB_HOST: db
       DB_PORT: 5432
+      DB_HOST: db
     ports:
       - "5001:80"
     depends_on:
