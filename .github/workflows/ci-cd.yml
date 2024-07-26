@@ -2,9 +2,9 @@ name: CI/CD Pipeline
 
 on:
   push:
-    branches: [main]
+    branches: [ main ]
   pull_request:
-    branches: [main]
+    branches: [ main ]
 
 jobs:
   build:
@@ -25,7 +25,6 @@ jobs:
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
-
     env:
       DATABASE_URL: postgresql://postgres:${{ secrets.DB_PASSWORD }}@localhost:5432/ssdDatabase
       DB_NAME: ssdDatabase
@@ -33,6 +32,8 @@ jobs:
       DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
       DB_HOST: localhost
       DB_PORT: 5432
+      FLASK_APP: app/main.py
+      FLASK_ENV: development
 
     steps:
     - name: Checkout code
@@ -47,7 +48,7 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
-
+    
     - name: Run tests
       run: |
         cd app
