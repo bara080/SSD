@@ -8,7 +8,6 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     services:
@@ -25,15 +24,13 @@ jobs:
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
+
     env:
       DATABASE_URL: postgresql://postgres:${{ secrets.DB_PASSWORD }}@localhost:5432/ssdDatabase
       DB_NAME: ssdDatabase
       DB_USER: postgres
       DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
       DB_HOST: localhost
-      FLASK_APP: app/main.py  # Ensure this path is correct
-      FLASK_ENV: development
-      ENV_FILE: app/.env
 
     steps:
     - name: Checkout code
@@ -51,11 +48,15 @@ jobs:
 
     - name: Load environment variables
       run: |
-        export $(cat app/.env | xargs)
+        cp app/.env .env
+        cp app/.flaskenv .flaskenv
+        export $(cat .env | xargs)
+        export $(cat .flaskenv | xargs)
 
     - name: Run tests
       run: |
         cd app
+        export FLASK_APP=main.py
         flask db upgrade
         pytest
 
